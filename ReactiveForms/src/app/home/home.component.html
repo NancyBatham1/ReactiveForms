@@ -1,0 +1,13 @@
+FormControl:<br>
+<label for="name"></label>
+<input id="name" type="text" [formControl]="name">{{name.value}}
+<button (click)="UpdateName()">changeValue</button>
+<hr>
+FormGroup:<br>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label for="fname">fname: </label>
+    <input id="fname" type="text" formControlName="fname"><br>
+    <label for="lname">lname: </label>
+    <input id="lname" type="text" formControlName="lname"><br>
+    <button type="submit" [disabled]="!profileForm.valid" disabled9999>Submit</button>
+</form>
