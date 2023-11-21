@@ -3,7 +3,7 @@ FormControl:<br>
 <input id="name" type="text" [formControl]="name">{{name.value}}
 <button (click)="UpdateName()">changeValue</button>
 <hr>
-FormGroup:<br>
+FormGroup with validators:<br>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <label for="fname">fname: </label>
     <input id="fname" type="text" formControlName="fname"><br>
@@ -11,3 +11,20 @@ FormGroup:<br>
     <input id="lname" type="text" formControlName="lname"><br>
     <button type="submit" [disabled]="!profileForm.valid" disabled9999>Submit</button>
 </form>
+<hr>
+Dynamic forms:<br>
+<form [formGroup]="myForm" (ngSubmit)="onSubmitD()">
+    <div formArrayName="fields">
+      <div *ngFor="let field of fieldForms.controls; let i = index" [formGroupName]="i">
+        <!-- Add your dynamic fields here -->
+        <input type="text" formControlName="fieldName" placeholder="Field Name">
+        <input type="text" formControlName="fieldDescription" placeholder="Field Description">
+        <!-- Add other fields as needed -->
+        <button type="button" (click)="removeField(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addField()">Add Field</button>
+    <button type="submit" >Submit</button>
+  </form>
+  
+  
